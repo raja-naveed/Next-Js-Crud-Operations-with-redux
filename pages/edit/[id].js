@@ -1,15 +1,19 @@
-'use client'
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 import { updateUser } from "@/redux/UserReducer";
 
 const Edit = () => {
-    const router = useRouter();
-    const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
   const users = useSelector((state) => state.users);
-  const existingUser = users.find((user) => user.id ==id);
-  const { name, email } = existingUser; 
+
+  // Find the user by id, or default to an empty object if not found
+  const existingUser = users.find((user) => user.id == id) || {};
+
+  // Destructure properties with default values to prevent errors
+  const { name = "", email = "" } = existingUser; 
+
   const [uname, setName] = useState(name);
   const [uemail, setEmail] = useState(email);
   const dispatch = useDispatch();
@@ -19,7 +23,7 @@ const Edit = () => {
     console.log("Updating user:", { id, name: uname, email: uemail }); // Log the payload
     dispatch(updateUser({ 
       id, name: uname, email: uemail
-     }));
+    }));
     console.log("Updated user:", users); // Log the updated state
     router.push('/');
   };
