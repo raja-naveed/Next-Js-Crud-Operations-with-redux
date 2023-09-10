@@ -1,6 +1,6 @@
 // UserReducer.jsx
 import { createSlice } from "@reduxjs/toolkit";
-import { Data } from "../data/data";
+import { Data } from "@/data/data";
 
 const userSlice = createSlice({
   name: "user",
