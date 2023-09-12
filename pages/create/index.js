@@ -33,6 +33,7 @@ const Create = () => {
               className="form-control"
               id="name"
               placeholder="Enter Name"
+              maxLength = "20"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -42,6 +43,7 @@ const Create = () => {
               type="email"
               className="form-control"
               id="email"
+              maxLength={20}
               placeholder="enter your email"
               onChange={(e) => setEmail(e.target.value)}
             />
